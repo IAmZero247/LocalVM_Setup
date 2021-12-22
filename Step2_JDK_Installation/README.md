@@ -8,7 +8,7 @@
 1. Download tar.gz file for jdk 1.8
 2. Untar it 
 3. Copy it to /usr/local/java
-4. Set up the path. Open command line and wrote "gedit .bashrc"
+4. Set up the path. Open command line and wrote "gedit ~/.bashrc"
       Note  -> To Locate .bashrc use  
                
 			   ls -la ~/ | more

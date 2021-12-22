@@ -28,21 +28,22 @@
 - Set up the path. Open command line and wrote "gedit ~/.bashrc" 
   
   1. Add below to .bashrc
-  
-    - export HADOOP_HOME=/usr/local/hadoop/hadoop-3.2.2
-	- export HADOOP_INSTALL=$HADOOP_HOME
-	- export HADOOP_MAPRED_HOME=$HADOOP_HOME
-	- export HADOOP_COMMON_HOME=$HADOOP_HOME
-	- export HADOOP_HDFS_HOME=$HADOOP_HOME
-	- export YARN_HOME=$HADOOP_HOME
-	- export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-	- export PATH=$PATH:$HADOOP_HOME/bin
-	- export PATH=$PATH:$HADOOP_HOME/sbin
-	- export HADOOP_CONF_DIR=/usr/local/hadoop/hadoop-3.2.2/etc/hadoop
-	- export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
-	- export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lin/hadoop-streaming-2.9.2.jar
-	- export HADOOP_LOG_DIR=$HADOOP_HOME/logs  
-	
+     
+	 ```
+     export HADOOP_HOME=/usr/local/hadoop/hadoop-3.2.2
+	 export HADOOP_INSTALL=$HADOOP_HOME
+	 export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	 export HADOOP_COMMON_HOME=$HADOOP_HOME
+	 export HADOOP_HDFS_HOME=$HADOOP_HOME
+	 export YARN_HOME=$HADOOP_HOME
+	 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+	 export PATH=$PATH:$HADOOP_HOME/bin
+	 export PATH=$PATH:$HADOOP_HOME/sbin
+	 export HADOOP_CONF_DIR=/usr/local/hadoop/hadoop-3.2.2/etc/hadoop
+	 export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
+	 export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lin/hadoop-streaming-2.9.2.jar
+	 export HADOOP_LOG_DIR=$HADOOP_HOME/logs  
+	 ```
   2. Note: To set path, either restart the VM or run below
 
 		source ~/.bashrc	
