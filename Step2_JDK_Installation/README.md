@@ -31,8 +31,8 @@
 
 6. Verify 
 
-    java -version
-    javac -version 	
+    - java -version
+    - javac -version 	
 	
 
 
