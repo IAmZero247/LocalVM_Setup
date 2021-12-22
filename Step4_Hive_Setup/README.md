@@ -115,9 +115,7 @@
       Using Hive in a stand-alone mode rather than in a real-life Apache Hadoop cluster is a safe option.
 	  You can configure the system to use your local storage rather than the HDFS layer by setting the 
 	  hive.metastore.warehouse.dir parameter value to the location of your Hive warehouse directory.
-	  ```
 	  
-	  ```xml
 	  <property>
 		<name>hive.metastore.warehouse.dir</name>
 		<value>/user/hive/warehouse</value>
