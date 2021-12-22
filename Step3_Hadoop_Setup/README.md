@@ -169,6 +169,7 @@
    1. Start HDFS and Yarn
    
 		a. start-dfs.sh
+		
 		b. start-yarn.sh
 		
         c. start-all.sh 
