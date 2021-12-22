@@ -19,13 +19,15 @@
    https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz
 
 
-  1. Untar it 
+- Untar it 
     
 	tar -xzvf hadoop-2.8.5.tar.gz
 
-  2. copy it to /usr/local/hadoop
+- copy it to /usr/local/hadoop
 
-  3. Set up the path. Open command line and wrote "gedit ~/.bashrc"
+- Set up the path. Open command line and wrote "gedit ~/.bashrc" 
+  
+  1. Add below to .bashrc
   
     - export HADOOP_HOME=/usr/local/hadoop/hadoop-3.2.2
 	- export HADOOP_INSTALL=$HADOOP_HOME
@@ -41,26 +43,26 @@
 	- export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lin/hadoop-streming-2.9.2.jar
 	- export HADOOP_LOG_DIR=$HADOOP_HOME/logs  
 	
-  4. Note: To set path, either restart the VM or run below
+  2. Note: To set path, either restart the VM or run below
 
 		source ~/.bashrc	
 		
-  5. Update Configs In hadoop-env.sh
+- Update Configs In hadoop-env.sh
     
-	- Open file -> sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh   
+	1. Open file -> sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh and add below  
 	
 	  export JAVA_HOME=/usr/local/java/jdk1.8.0_261
 	
 
-    - If you need help to locate the correct Java path, run the following command in your terminal window:
+    2. If you need help to locate the correct Java path, run the following command in your terminal window:
 
-      1. which javac
+      a. which javac
      
 	  The resulting output provides the path to the Java binary directory.
 
       /usr/bin/javac
       
-	  2. Use the provided path to find the OpenJDK directory with the following command:
+	  b. Use the provided path to find the OpenJDK directory with the following command:
 
       readlink -f /usr/bin/javac
       
