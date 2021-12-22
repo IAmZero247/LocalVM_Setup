@@ -201,12 +201,12 @@
 
     2.   HIVE_HOME/bin/schematool -initSchema -dbType mysql	
 	
-	3.   Restart hadoop/hive if needed 
+	3.   Restart Hadoop/Hive if needed 
 	   
 			```
 			cd $HIVE_HOME/bin
-			 hive
-			 show databases;
+			hive
+			show databases;
 			 
 			 
 			Then create a table in it and insert one record.
