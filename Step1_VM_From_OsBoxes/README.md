@@ -20,8 +20,8 @@
 
 4. Install Chrome. 
 
-   -username = osboxes
-   -password = oxboxes.org
+   - username = osboxes
+   - password = oxboxes.org
 
    
 	
