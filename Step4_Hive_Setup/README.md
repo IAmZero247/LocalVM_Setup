@@ -65,8 +65,93 @@
     2. To set path, either restart the VM or run below
 
     source ~/.bashrc	
-	
-	
+
+- Edit hive-config.sh file
+
+  Open file -> $HIVE_HOME/bin/hive-config.sh	
+  
+  Add Below 
+  
+  export HADOOP_HOME=/usr/local/hadoop/hadoop-3.2.2
+  
+- Create Hive Directories in HDFS
+
+  1. Create a tmp directory within the HDFS storage layer. This directory is going to store the intermediary data Hive sends to the HDFS:
+        
+		```
+		hdfs dfs -mkdir /tmp
+		Add write and execute permissions to tmp group members:
+
+		hdfs dfs -chmod g+w /tmp
+		Check if the permissions were added correctly:
+
+		hdfs dfs -ls /  
+	    ```
+		
+  2. Create the warehouse directory within the /user/hive/ parent directory:
+        
+		```
+		hdfs dfs -mkdir -p /user/hive/warehouse
+		Add write and execute permissions to warehouse group members:
+
+		hdfs dfs -chmod g+w /user/hive/warehouse
+		Check if the permissions were added correctly:
+
+		hdfs dfs -ls /user/hive
+        ```
+- Configure hive-site.xml File	
+     
+	1.  Use the hive-default.xml.template to create the hive-site.xml file:
+
+       ```
+	   cd $HIVE_HOME/conf
+	   cp hive-default.xml.template hive-site.xml
+		```	   
+		
+		
+	2. Access the hive-site.xml file using the nano text editor:
+      
+	  ```
+      Using Hive in a stand-alone mode rather than in a real-life Apache Hadoop cluster is a safe option.
+	  You can configure the system to use your local storage rather than the HDFS layer by setting the 
+	  hive.metastore.warehouse.dir parameter value to the location of your Hive warehouse directory.
+	  ```
+
+
+- How to Fix guava Incompatibility Error in Hive
+
+     ```
+	  rm $HIVE_HOME/lib/guava-19.0.jar
+	  cp $HADOOP_HOME/share/hadoop/hdfs/lib/guava-27.0-jre.jar $HIVE_HOME/lib/
+	 ```
+	 
+- Remove The special Character From hive-site.xml  [Line 3215 #]
+
+    ```
+	cat hive-site.xml | grep hive.txn.xlock.iow -n 
+   
+    remove "&#8"
+    ```
+
+- HIVE java net URISyntaxException - Update Following in hive-site.xml
+
+   ```
+   <name>hive.exec.scratchdir</name>
+   <value>/tmp/hive-${user.name}</value>
+
+   <name>hive.exec.local.scratchdir</name>
+   <value>/tmp/${user.name}</value>
+
+   <name>hive.downloaded.resources.dir</name>
+   <value>/tmp/${user.name}_resources</value>
+
+   <name>hive.scratch.dir.permission</name>
+   <value>733</value>   
+   ```   
+- Initiate Derby Database and Test 	 
+      
+       $HIVE_HOME/bin/schematool -dbType derby -initSchema	  
+		
 - HIVE_HOME/bin/schematool -initSchema -dbType mysql	
 
 
