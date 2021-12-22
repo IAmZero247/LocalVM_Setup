@@ -161,9 +161,43 @@
    ```   
 - Initiate Derby Database and Test 	 
       
-       $HIVE_HOME/bin/schematool -dbType derby -initSchema	  
+      ```
+	  $HIVE_HOME/bin/schematool -dbType derby -initSchema	
+
+
+      cd $HIVE_HOME/bin
+      hive
+	  
+	  show databases;
+	  ```	  
 		
-- HIVE_HOME/bin/schematool -initSchema -dbType mysql	
+- Update metastore to MySql  - Add Below to hive-site.xml
+
+
+     ```xml 
+		 <property>
+		  <name>javax.jdo.option.ConnectionURL</name>
+		  <value>jdbc:mysql://localhost/metastore_db?createDatabaseIfNotExist=true</value>
+		  <description>JDBC connect string for a JDBC metastore </description>
+		 </property>
+		 <property>
+			<name>javax.jdo.option.ConnectionDriverName</name>
+			<value>com.mysql.jdbc.Driver</value>
+			<description>Driver class name for a JDBC metastore</description>
+		 </property>
+		 <property>
+		   <name>javax.jdo.option.ConnectionPassword</name>
+		   <value>Hive@123456</value>
+		   <description>password to use against metastore database</description>
+		 </property>
+		 <property>
+		   <name>javax.jdo.option.ConnectionUserName</name>
+		   <value>hiveuser</value>
+		   <description>Username to use against metastore database</description>
+		 </property>   
+     ```	  
+
+HIVE_HOME/bin/schematool -initSchema -dbType mysql	
 
 
  
