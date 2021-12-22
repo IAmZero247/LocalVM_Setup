@@ -87,7 +87,7 @@
 			  <value>hdfs://127.0.0.1:9000</value>
 			</property>
 		</configuration>
-		.```
+		```
 		
 - Edit hdfs-site.xml File
 
@@ -110,7 +110,7 @@
 			  <value>1</value>
 			</property>
 	 </configuration>	
-     .```
+     ```
 	 
 - Edit mapred-site.xml File	
 
@@ -125,7 +125,7 @@
 		  <value>yarn</value> 
 		</property> 
 	</configuration>
-    .```
+    ```
 	
 - Edit yarn-site.xml File	
 
@@ -156,7 +156,7 @@
 			  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
 			</property>
 	 </configuration>
-	 .```
+	 ```
 	 
 - It is important to format the NameNode before starting Hadoop services for the first time:
 
