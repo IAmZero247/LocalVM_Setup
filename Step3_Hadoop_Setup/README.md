@@ -95,22 +95,22 @@
 
     2. Add Below 
       
-      ```xml
-	  <configuration>
-			<property>
-			  <name>dfs.data.dir</name>
-			  <value>/usr/local/hadoop/hadoopwdir/dfsdata/namenode</value>
-			</property>
-			<property>
-			  <name>dfs.data.dir</name>
-			  <value>/usr/local/hadoop/hadoopwdir/dfsdata/datanode</value>
-			</property>
-			<property>
-			  <name>dfs.replication</name>
-			  <value>1</value>
-			</property>
-	 </configuration>	
-     ```
+		  ```xml
+		  <configuration>
+				<property>
+				  <name>dfs.data.dir</name>
+				  <value>/usr/local/hadoop/hadoopwdir/dfsdata/namenode</value>
+				</property>
+				<property>
+				  <name>dfs.data.dir</name>
+				  <value>/usr/local/hadoop/hadoopwdir/dfsdata/datanode</value>
+				</property>
+				<property>
+				  <name>dfs.replication</name>
+				  <value>1</value>
+				</property>
+		 </configuration>	
+		 ```
 	 
 - Edit mapred-site.xml File	
 
