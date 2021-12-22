@@ -23,6 +23,18 @@
 
     
 	source ~/.bashrc
+	
+	
+	3. Verify 
+	
+	  ```
+	  scala -version 
+	  
+	  
+	  scala 
+	  
+	  scala>  1+2
+	  ```
 
 
  
