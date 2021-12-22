@@ -136,7 +136,7 @@
     ```
 	cat hive-site.xml | grep hive.txn.xlock.iow -n 
    
-    remove "&#8"
+    remove "&#8" and save
     ```
 
 - HIVE java net URISyntaxException - Update Following in hive-site.xml
@@ -171,33 +171,59 @@
 	  show databases;
 	  ```	  
 		
-- Update metastore to MySql  - Add Below to hive-site.xml
+- Update metastore to MySql  
 
+    1. Add Below to hive-site.xml
+  
 
-     ```xml 
-		 <property>
-		  <name>javax.jdo.option.ConnectionURL</name>
-		  <value>jdbc:mysql://localhost/metastore_db?createDatabaseIfNotExist=true</value>
-		  <description>JDBC connect string for a JDBC metastore </description>
-		 </property>
-		 <property>
-			<name>javax.jdo.option.ConnectionDriverName</name>
-			<value>com.mysql.jdbc.Driver</value>
-			<description>Driver class name for a JDBC metastore</description>
-		 </property>
-		 <property>
-		   <name>javax.jdo.option.ConnectionPassword</name>
-		   <value>Hive@123456</value>
-		   <description>password to use against metastore database</description>
-		 </property>
-		 <property>
-		   <name>javax.jdo.option.ConnectionUserName</name>
-		   <value>hiveuser</value>
-		   <description>Username to use against metastore database</description>
-		 </property>   
-     ```	  
+		 ```xml 
+			 <property>
+			  <name>javax.jdo.option.ConnectionURL</name>
+			  <value>jdbc:mysql://localhost/metastore_db?createDatabaseIfNotExist=true</value>
+			  <description>JDBC connect string for a JDBC metastore </description>
+			 </property>
+			 <property>
+				<name>javax.jdo.option.ConnectionDriverName</name>
+				<value>com.mysql.jdbc.Driver</value>
+				<description>Driver class name for a JDBC metastore</description>
+			 </property>
+			 <property>
+			   <name>javax.jdo.option.ConnectionPassword</name>
+			   <value>Hive@123456</value>
+			   <description>password to use against metastore database</description>
+			 </property>
+			 <property>
+			   <name>javax.jdo.option.ConnectionUserName</name>
+			   <value>hiveuser</value>
+			   <description>Username to use against metastore database</description>
+			 </property>   
+		 ```	  
 
-HIVE_HOME/bin/schematool -initSchema -dbType mysql	
+    2.   HIVE_HOME/bin/schematool -initSchema -dbType mysql	
+	
+	3.   Restart hadoop/hive if needed 
+	   
+			```
+			cd $HIVE_HOME/bin
+			 hive
+			 show databases;
+			 
+			 
+			Then create a table in it and insert one record.
+			 
+			hive> create table testm1(id int, name string);
+            hive> insert into testm1 values(1, “Helical”);
+
+			Later access your MySQL and open metastore database
+
+			sudo mysql -u root -p
+            
+			Enter password: samplepassword
+
+            mysql> use metastore;
+			mysql> show tables ;
+			mysql> select * from TBLS;
+			```
 
 
  
