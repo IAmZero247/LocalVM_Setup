@@ -7,11 +7,11 @@
   https://spark.apache.org/downloads.html
   
   ```
-	  1. Choose a Spark release:  ->3.1.2 (Jun 01 2021)
+	  1. Choose a Spark release:  -> 3.1.2 (Jun 01 2021)
 	  
-	  2. Choose a package type: ->Pre-built for Apache Hadoop 2.7
+	  2. Choose a package type: -> Pre-built for Apache Hadoop 2.7
 	  
-	  3. Download Spark: spark-3.1.2-bin-hadoop2.7.tgz
+	  3. Download Spark: -> spark-3.1.2-bin-hadoop2.7.tgz
   ``` 
 
 - Download tar.gz file for spark-3.1.2-bin-hadoop2.7.tgz
