@@ -116,6 +116,14 @@
 	  You can configure the system to use your local storage rather than the HDFS layer by setting the 
 	  hive.metastore.warehouse.dir parameter value to the location of your Hive warehouse directory.
 	  ```
+	  
+	  ```xml
+	  <property>
+		<name>hive.metastore.warehouse.dir</name>
+		<value>/user/hive/warehouse</value>
+		<description>location of default database for the warehouse</description>
+	  </property>
+	  ```	
 
 
 - How to Fix guava Incompatibility Error in Hive
@@ -135,18 +143,23 @@
 
 - HIVE java net URISyntaxException - Update Following in hive-site.xml
 
-   ```
+   ```xml
+   <property>
    <name>hive.exec.scratchdir</name>
    <value>/tmp/hive-${user.name}</value>
-
+   </property>
+   <property>   
    <name>hive.exec.local.scratchdir</name>
    <value>/tmp/${user.name}</value>
-
+   </property>
+   <property>
    <name>hive.downloaded.resources.dir</name>
    <value>/tmp/${user.name}_resources</value>
-
+   </property>
+   <property>
    <name>hive.scratch.dir.permission</name>
-   <value>733</value>   
+   <value>733</value>
+   <property>   
    ```   
 - Initiate Derby Database and Test 	 
       
