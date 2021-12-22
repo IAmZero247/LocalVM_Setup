@@ -181,6 +181,8 @@
 		 choose platform independent , download Compressed TAR Archive. Unzip and copy the jar mysql-connector-java-8.0.27.jar to location 
 		 HIVE_HOME/lib directory
 		 
+		 Ref -> https://www.linkedin.com/pulse/changing-hive-metastore-db-mysql-from-derby-mohamed-k-1
+		 
 
     2. Add Below to hive-site.xml
   
