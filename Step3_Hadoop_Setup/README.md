@@ -40,16 +40,16 @@
 	- export PATH=$PATH:$HADOOP_HOME/sbin
 	- export HADOOP_CONF_DIR=/usr/local/hadoop/hadoop-3.2.2/etc/hadoop
 	- export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
-	- export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lin/hadoop-streming-2.9.2.jar
+	- export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lin/hadoop-streaming-2.9.2.jar
 	- export HADOOP_LOG_DIR=$HADOOP_HOME/logs  
 	
   2. Note: To set path, either restart the VM or run below
 
 		source ~/.bashrc	
 		
-- Update Configs In hadoop-env.sh
+- Update Configs In hadoop-env.sh File
     
-	1. Open file -> sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh and add below  
+	1. Open file ->  $HADOOP_HOME/etc/hadoop/hadoop-env.sh and add below  [Use gedit]
 	
 	  export JAVA_HOME=/usr/local/java/jdk1.8.0_261
 	
@@ -69,4 +69,111 @@
 	  The section of the path just before the /bin/javac directory needs to be assigned to the $JAVA_HOME variable.
  
       /usr/local/java/jdk1.8.0_261/bin/javac
+
+- Edit core-site.xml File
+
+    1. Open file ->  $HADOOP_HOME/etc/hadoop/core-site.xml	
 	
+	2. Add Below 
+	
+		<configuration>
+			<property>
+			  <name>hadoop.tmp.dir</name>
+			  <value>/usr/local/hadoop/hadoopwdir/tmpdata</value>
+			</property>
+			<property>
+			  <name>fs.default.name</name>
+			  <value>hdfs://127.0.0.1:9000</value>
+			</property>
+		</configuration>
+		
+- Edit hdfs-site.xml File
+
+    1. Open file ->  $HADOOP_HOME/etc/hadoop/hdfs-site.xml	
+
+    2. Add Below 
+      
+      <configuration>
+			<property>
+			  <name>dfs.data.dir</name>
+			  <value>/usr/local/hadoop/hadoopwdir/dfsdata/namenode</value>
+			</property>
+			<property>
+			  <name>dfs.data.dir</name>
+			  <value>/usr/local/hadoop/hadoopwdir/dfsdata/datanode</value>
+			</property>
+			<property>
+			  <name>dfs.replication</name>
+			  <value>1</value>
+			</property>
+	 </configuration>	
+
+- Edit mapred-site.xml File	
+
+    1. Open file ->  $HADOOP_HOME/etc/hadoop/mapred-site.xml
+
+    2. Add Below
+
+     <configuration> 
+		<property> 
+		  <name>mapreduce.framework.name</name> 
+		  <value>yarn</value> 
+		</property> 
+	</configuration>
+
+- Edit yarn-site.xml File	
+
+    1. Open file ->  $HADOOP_HOME/etc/hadoop/yarn-site.xml
+
+    2. Add Below
+
+     <configuration>
+			<property>
+			  <name>yarn.nodemanager.aux-services</name>
+			  <value>mapreduce_shuffle</value>
+			</property>
+			<property>
+			  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+			  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+			</property>
+			<property>
+			  <name>yarn.resourcemanager.hostname</name>
+			  <value>127.0.0.1</value>
+			</property>
+			<property>
+			  <name>yarn.acl.enable</name>
+			  <value>0</value>
+			</property>
+			<property>
+			  <name>yarn.nodemanager.env-whitelist</name>   
+			  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+			</property>
+	 </configuration>
+	 
+- It is important to format the NameNode before starting Hadoop services for the first time:
+
+   hdfs namenode -format
+
+
+- Execute and Verify 
+
+
+   1. Start hdfs and yarn
+   
+    start-dfs.sh
+    start-yarn.sh
+    
+    start-all.sh 
+    
+	jps 	
+   
+   2. Access Hadoop UI from Browser 
+   
+   The NameNode user interface provides a comprehensive overview of the entire cluster.
+   http://localhost:9870
+   
+   The default port 9864 is used to access individual DataNodes directly from your browser:
+   http://localhost:9864
+
+   The default port 9864 is used to access individual DataNodes directly from your browser:
+   http://localhost:9864
