@@ -76,6 +76,7 @@
 	
 	2. Add Below 
 	
+	    '''
 		<configuration>
 			<property>
 			  <name>hadoop.tmp.dir</name>
@@ -86,6 +87,7 @@
 			  <value>hdfs://127.0.0.1:9000</value>
 			</property>
 		</configuration>
+		'''
 		
 - Edit hdfs-site.xml File
 
@@ -93,7 +95,8 @@
 
     2. Add Below 
       
-      <configuration>
+      '''
+	  <configuration>
 			<property>
 			  <name>dfs.data.dir</name>
 			  <value>/usr/local/hadoop/hadoopwdir/dfsdata/namenode</value>
@@ -107,26 +110,30 @@
 			  <value>1</value>
 			</property>
 	 </configuration>	
-
+     '''
+	 
 - Edit mapred-site.xml File	
 
     1. Open file ->  $HADOOP_HOME/etc/hadoop/mapred-site.xml
 
     2. Add Below
-
+     
+	 '''
      <configuration> 
 		<property> 
 		  <name>mapreduce.framework.name</name> 
 		  <value>yarn</value> 
 		</property> 
 	</configuration>
-
+    '''
+	
 - Edit yarn-site.xml File	
 
     1. Open file ->  $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
     2. Add Below
-
+     
+	 '''
      <configuration>
 			<property>
 			  <name>yarn.nodemanager.aux-services</name>
@@ -149,6 +156,7 @@
 			  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
 			</property>
 	 </configuration>
+	 '''
 	 
 - It is important to format the NameNode before starting Hadoop services for the first time:
 
@@ -158,22 +166,22 @@
 - Execute and Verify 
 
 
-   1. Start hdfs and yarn
+   1. Start HDFS and Yarn
    
-    start-dfs.sh
-    start-yarn.sh
+		a. start-dfs.sh
+		b. start-yarn.sh
+		
+        c. start-all.sh 
     
-    start-all.sh 
-    
-	jps 	
+		d. jps 	
    
    2. Access Hadoop UI from Browser 
    
-   The NameNode user interface provides a comprehensive overview of the entire cluster.
+   a. The NameNode user interface provides a comprehensive overview of the entire cluster.
    http://localhost:9870
    
-   The default port 9864 is used to access individual DataNodes directly from your browser:
+   b. The default port 9864 is used to access individual DataNodes directly from your browser:
    http://localhost:9864
 
-   The default port 9864 is used to access individual DataNodes directly from your browser:
+   c. The default port 9864 is used to access individual DataNodes directly from your browser:
    http://localhost:9864
