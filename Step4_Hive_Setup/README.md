@@ -171,9 +171,18 @@
 	  show databases;
 	  ```	  
 		
-- Update metastore to MySql  
+- Update metastore to MySql
 
-    1. Add Below to hive-site.xml
+    1. Download jar and copy to 
+	   
+	     
+		 https://dev.mysql.com/downloads/connector/j/
+		 
+		 choose platform independent , download Compressed TAR Archive. Unzip and copy the jar mysql-connector-java-8.0.27.jar to location 
+		 HIVE_HOME/lib directory
+		 
+
+    2. Add Below to hive-site.xml
   
 
 		 ```xml 
@@ -199,9 +208,9 @@
 			 </property>   
 		 ```	  
 
-    2.   HIVE_HOME/bin/schematool -initSchema -dbType mysql	
+    3.   HIVE_HOME/bin/schematool -initSchema -dbType mysql	
 	
-	3.   Restart Hadoop/Hive if needed 
+	4.   Restart Hadoop/Hive if needed 
 	   
 			```
 			cd $HIVE_HOME/bin
