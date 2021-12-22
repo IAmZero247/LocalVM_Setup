@@ -52,17 +52,17 @@
 
 - Set up the path. Open command line and wrote "gedit ~/.bashrc"
   
-  1. Copy below at the end of file.
+    1. Copy below at the end of file.
     
 	```
-	export HIVE_HOME=/usr/local/hive/hive-2.3.6
+	export HIVE_HOME=/usr/local/hive/hive-3.1.2
 	export HIVE_CONF_DIR=${HIVE_HOME}/conf
 	export PATH=$PATH:$HIVE_HOME/bin
 	export CLASSPATH= $CLASSPATH:${HADOOP_HOME}/lib/*:.
 	export CLASSPATH=$CLASSPATH:${HIVE_HOME}/lib/*:.
 	```
 	
- 2. To set path, either restart the VM or run below
+    2. To set path, either restart the VM or run below
 
     source ~/.bashrc	
 	
