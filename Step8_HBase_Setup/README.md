@@ -1,4 +1,4 @@
-# Squoop  
+# HBase  
 
 - Ref1: https://prwatech.in/blog/hadoop-admin-2/sqoop-installation-in-manual-cluster/
   
