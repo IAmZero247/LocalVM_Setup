@@ -17,13 +17,18 @@ NOTE: YOU SHOULD BE HAVING VIRTUALZIATION ENABLED ON YOUR MACHINE...
 
 Option 2: 
 1. Oracle VM (Free) or VM Ware (License, personal use is free)
-Oracle VM
-2. Install Linux
-Cent OS, Red Hat or Ubuntu 
-Ubuntu 20.04
-3. Install jdk
-4. Install Hadoop and Hive
-5. Install Spark and Scala
-6. Install sbt
+2. Install Linux [Cent OS, Red Hat or Ubuntu] 
+3. Install Oracle JDK
+4. Install Hadoop 
+5. Install Hive with Mysql as metastore 
+5. Install Scala
+6. Install Scala Spark + PySpark 
+7. Install Sqoop
+8. Install HBase
+9. Install SBT + Maven + Gradle
+10. Install Airflow 
+12. Install Oozie
+13. Install k8S + Docker + Docker Swarm
+
   	
 	
