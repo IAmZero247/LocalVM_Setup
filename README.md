@@ -28,7 +28,7 @@ Option 2:
 9. Install SBT + Maven + Gradle
 10. Install Airflow 
 12. Install Oozie
-13. Install k8S + Docker + Docker Swarm
+13. Install K8S + Docker + Docker Swarm
 
   	
 	
