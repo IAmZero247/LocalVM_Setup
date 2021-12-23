@@ -33,7 +33,7 @@
 
   ```
   Add below to hbase-env 
-  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+  export JAVA_HOME=/usr/local/java/jdk1.8.0_261
   ``` 
 
 - Update conf/hbase-site.xml for temp directory
