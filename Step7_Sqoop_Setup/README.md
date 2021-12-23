@@ -10,7 +10,7 @@
 
 - tar  -xvf sqoop-1.4.7.bin_hadoop-2.6.0.tar.gz
 
-- copy it to /usr/local/sqoop
+- Copy it to /usr/local/sqoop
 
 - Edit the .bashrc file
 

@@ -23,7 +23,7 @@
     
 	tar -xzvf hadoop-2.8.5.tar.gz
 
-- copy it to /usr/local/hadoop
+- Copy it to /usr/local/hadoop
 
 - Set up the path. Open command line and wrote "gedit ~/.bashrc" 
   
@@ -52,7 +52,7 @@
     
 	1. Open file ->  $HADOOP_HOME/etc/hadoop/hadoop-env.sh and add below  [Use gedit]
 	
-	  export JAVA_HOME=/usr/local/java/jdk1.8.0_261
+	   export JAVA_HOME=/usr/local/java/jdk1.8.0_261
 	
 
     2. If you need help to locate the correct Java path, run the following command in your terminal window:

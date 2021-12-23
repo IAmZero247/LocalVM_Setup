@@ -25,10 +25,12 @@
 
 5. Update alternatives
 
-	- sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk1.8.0_261/bin/java" 1
-	- sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk1.8.0_261/bin/javac" 1
-    - sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/local/java/jdk1.8.0_261/bin/javaws" 1
-
+	```
+	sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk1.8.0_261/bin/java" 1
+	sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk1.8.0_261/bin/javac" 1
+    sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/local/java/jdk1.8.0_261/bin/javaws" 1
+    ```
+	
 6. Verify 
 
     - java -version

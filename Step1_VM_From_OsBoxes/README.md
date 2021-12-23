@@ -10,7 +10,7 @@
    - https://www.virtualbox.org/
    
 2. Download ubuntu 20.04 from below url and import in oracle vm
-   -https://ubuntu.com/download/server
+   - https://ubuntu.com/download/server
    - Refer if needed : https://www.youtube.com/watch?v=QbmRXJJKsvs   
    
 3. Setup VMBox using osboxes [DONE THIS WAY FOR VMWARE]*  
