@@ -15,7 +15,7 @@
    ```
    sudo mkdir -p /usr/local/hbase/hbase-data
    
-   Cive 777 permissions 
+   Give 777 permissions 
    ```
 
 - Edit the .bashrc file
