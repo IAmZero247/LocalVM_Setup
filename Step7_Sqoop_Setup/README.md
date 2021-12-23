@@ -36,7 +36,7 @@
   
   
   export HIVE_HOME=/usr/local/hive/hive-3.1.2
-  export HBASE_HOME=/usr/local/hbase/hbase-2.2.4
+  export HBASE_HOME=/usr/local/hbase/hbase-2.4.8
   ``` 
 
 - Download MySql Jar [Refer Hive installation to get same jar]
