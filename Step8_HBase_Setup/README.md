@@ -38,6 +38,49 @@
   Add below to hbase-env 
   export JAVA_HOME=/usr/local/java/jdk1.8.0_261
   ``` 
+  
+  
+- Update conf/hbase-site.xml for temp directory [Standalone Mode]
+
+    1. Create folder and give permission
+	   
+		```
+		sudo mkdir -p /usr/local/hbase/standalone/tmp
+		sudo chmod 777 -R  /usr/local/hbase/standalone/tmp
+		sudo mkdir -p /usr/local/hbase/standalone/files
+		sudo chmod 777 -R  /usr/local/hbase/standalone/files
+		sudo mkdir -p /usr/local/hbase/standalone/zookeeper                 /*optional*/
+		sudo chmod 777 -R  /usr/local/hbase/standalone/zookeeper            /*optional*/
+		```
+		
+    2.  Update 
+		```xml
+		<configuration>
+		  <property>
+			<name>hbase.tmp.dir</name>
+			<value>/var/hbase</value>
+		  </property>
+		  <property>
+			<name>hbase.rootdir</name>
+			<value>file:///usr/local/hbase/standalone/files</value>
+          </property>
+		  <property>
+			<name>hbase.zookeeper.property.dataDir</name>  /*optional*/
+			<value>/usr/local/hbase/standalone/zookeeper</value>
+		  </property>
+		</configuration>
+		```
+		
+- Start HBase daemons  [Standalone Mode]
+
+   ```
+   sudo ./bin/start-hbase.sh
+   
+   After a few minutes HBase should have started, you can test this by connecting to it using the HBase shell
+
+   ./bin/hbase shell
+   
+   ```		
 
 - Update conf/hbase-site.xml for temp directory [Pseudo Distributed Mode]
 
@@ -71,7 +114,7 @@
 	</configuration> 
   ```
   
-- Start Hadoop daemons first and after that start HBase daemons
+- Start Hadoop daemons first and after that start HBase daemons [Pseudo Distributed Mode]
 
    ```
    sudo ./bin/start-hbase.sh
