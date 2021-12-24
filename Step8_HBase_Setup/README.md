@@ -39,7 +39,7 @@
   export JAVA_HOME=/usr/local/java/jdk1.8.0_261
   ``` 
 
-- Update conf/hbase-site.xml for temp directory
+- Update conf/hbase-site.xml for temp directory [Pseudo Distributed Mode]
 
   ```xml
     <configuration>
@@ -54,7 +54,7 @@
 		</property>
 		
 		<property>
-			<name>hbase.zookeeper.quorum</name>
+			<name>hbase.zookeeper.quorum</name>  /*optional*/
 			<value>localhost</value>
 		</property>
 		
@@ -64,9 +64,9 @@
 		</property>
 
 
-		<property>
-			<name>hbase.zookeeper.property.dataDir</name>
-			<value>/home/hduser/hbase/zookeeper</value>
+		<property>                          
+			<name>hbase.zookeeper.property.dataDir</name>   /*optional*/
+			<value>/home/osboxes/hbase/zookeeper</value>
 		</property>
 	</configuration>
   ```
