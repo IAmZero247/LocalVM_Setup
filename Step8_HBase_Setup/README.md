@@ -65,10 +65,10 @@
 
 
 		<property>                          
-			<name>hbase.zookeeper.property.dataDir</name>   /*optional*/
+			<name>hbase.zookeeper.property.dataDir</name>   /*optional - create in hdfs and give g+w permission */
 			<value>/home/osboxes/hbase/zookeeper</value>
 		</property>
-	</configuration>
+	</configuration> 
   ```
   
 - Start Hadoop daemons first and after that start HBase daemons
