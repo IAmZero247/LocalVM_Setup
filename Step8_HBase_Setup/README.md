@@ -143,6 +143,19 @@
   ```
    master -> http://localhost:16010/master-status
    region server -> http://localhost:16030/rs-status
+   
+   
+   
+   To get info of ports refer -> https://blog.cloudera.com/guide-to-using-apache-hbase-ports/
+   
+   To list any process listening to the port 60000
+   lsof -i:60000
+   
+   To kill process violently 
+   kill -9 $(lsof -t -i:60000)
+   kill -9 $(lsof -t -i:60010)
+   
+   sudo netstat -plten |grep java
   ```  
    
 	
