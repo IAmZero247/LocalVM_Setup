@@ -10,6 +10,14 @@
 
 - Copy it to /usr/local/hbase
 
+
+sudo cat /etc/hosts
+
+127.0.0.1	localhost
+127.0.0.1	osboxes
+http://localhost:16010/master-status
+http://localhost:16030/rs-status
+
 - Make a directory for our HBase data
    
    ```
