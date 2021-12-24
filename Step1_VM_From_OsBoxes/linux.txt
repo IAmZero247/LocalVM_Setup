@@ -1,0 +1,27 @@
+Linux commands
+
+1. present working directory
+pwd 
+
+/home/sam
+
+
+2. list all files 
+ls -ltr 
+
+ -l = long list 
+ -t = time  sorted
+ -r = reverse sort
+
+-rw-rw-r-- 1 sam sam 3220 Dec 19  2018 winehq.key
+drwxr-xr-x 2 sam sam 4096 Oct 18  2020 Templates
+drwxr-xr-x 2 sam sam 4096 Oct 18  2020 Public
+drwxr-xr-x 2 sam sam 4096 Oct 18  2020 Videos
+drwxr-xr-x 2 sam sam 4096 Oct 18  2020 Music
+drwxr-xr-x 2 sam sam 4096 Nov  3  2020 Downloads
+drwxrwxr-x 7 sam sam 4096 Dec 12  2020 LFS
+drwxr-xr-x 4 sam sam 4096 Dec 30 16:14 Desktop
+drwxrwxr-x 3 sam sam 4096 Jan 10 13:28 workspace
+-rw------- 1 sam sam 5622 Jan 10 13:41 nohup.out
+drwxr-xr-x 2 sam sam 4096 Jan 10 13:47 Documents
+drwxr-xr-x 2 sam sam 4096 Jan 10 13:48 Pictures

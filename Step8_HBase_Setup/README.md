@@ -1,31 +1,26 @@
-# HBase  
+# HBase - Pseudo Distributed Mode
 
 - Ref1: https://prwatech.in/blog/hadoop-admin-2/sqoop-installation-in-manual-cluster/
+
+- Ref2: https://www.guru99.com/hbase-installation-guide.html
   
 - https://hbase.apache.org/
 
-- Download -> https://www.apache.org/dyn/closer.lua/hbase/2.4.8/hbase-2.4.8-bin.tar.gz
+- Download -> https://archive.apache.org/dist/hbase/2.4.6/
 
-- tar  -xvf hbase-2.4.8-bin.tar.gz
+- tar  -xvf hbase-2.4.6-bin.tar.gz
 
 - Copy it to /usr/local/hbase
 
-
-sudo cat /etc/hosts
-
-127.0.0.1	localhost
-127.0.0.1	osboxes
-http://localhost:16010/master-status
-http://localhost:16030/rs-status
-
-- Make a directory for our HBase data
-   
-   ```
-   sudo mkdir -p /usr/local/hbase/hbase-data
-   
-   Give 777 permissions 
-   ```
-
+- Update cat for all 127.0.0.1 /etc/hosts
+    
+	```
+	127.0.0.1	localhost
+	127.0.0.1	osboxes
+	http://localhost:16010/master-status
+	http://localhost:16030/rs-status
+    
+	```
 - Edit the .bashrc file
 
     ```
@@ -48,21 +43,63 @@ http://localhost:16030/rs-status
 
   ```xml
     <configuration>
-		  <property>
-			<name>hbase.tmp.dir</name>
-			<value>/var/hbase</value>
-		  </property>
+		<property>
+			<name>hbase.rootdir</name>
+			<value>hdfs://localhost:9000/hbase</value>
+		</property>
+		  
+		<property>
+			<name>hbase.cluster.distributed</name>
+			<value>true</value>
+		</property>
+		
+		<property>
+			<name>hbase.zookeeper.quorum</name>
+			<value>localhost</value>
+		</property>
+		
+		<property>
+			<name>dfs.replication</name>
+			<value>1</value>
+		</property>
+
+
+		<property>
+			<name>hbase.zookeeper.property.dataDir</name>
+			<value>/home/hduser/hbase/zookeeper</value>
+		</property>
 	</configuration>
   ```
   
-- Start HBase by running the start-hbase script
+- Start Hadoop daemons first and after that start HBase daemons
 
    ```
    sudo ./bin/start-hbase.sh
+   
+   jps
+        12211 DataNode
+		18263 HMaster
+		12823 NodeManager
+		12071 NameNode
+		15271 JarBootstrapMain
+		18152 HQuorumPeer
+		12664 ResourceManager
+		18968 Jps
+		12426 SecondaryNameNode
+		18447 HRegionServer
+
    
    After a few minutes HBase should have started, you can test this by connecting to it using the HBase shell
 
    ./bin/hbase shell
    
    ```
+
+- UI
+
+  ```
+   master -> http://localhost:16010/master-status
+   region server -> http://localhost:16030/rs-status
+  ```  
+   
 	

@@ -1,0 +1,277 @@
+Hadoop Commands:
+****************
+Shell commands to start hadoop demon and verify
+
+1. start-dfs.sh [name node , data node , secondary name node]
+2. start-yarn.sh [resource manager , node manager ]
+3. start-all.sh 
+4. jps 
+
+   6065 NameNode
+   6199 DataNode
+   6807 NodeManager
+   6391 SecondaryNameNode
+   6650 ResourceManager
+   10223 Jps
+   
+5. stop-all.sh   
+****************************************************************
+hdfs version
+****************************************************************
+Q. Difference between hdfs dfs & hadoop fs? 
+	fs refers to any filesystem it could be local or hdfs.
+    dfs refers only to HDFS file system
+****************************************************************
+mysql -uroot -pWelcome@123
+****************************************************************
+
+LFS -> /home/sam/LFS
+hadoop Input Path -> /user/sam/HFS/input
+hadoop Output Path -> /user/sam/HFS/output
+
+WebUI for name node -> http://<ipaddress>:9870
+WebUI for resource mapper -> http://<ipaddress>:8088
+****************************************************************
+#help command -  Help shows help for all the commands or the specified command.
+hdfs dfs -help
+
+hdfs dfs -help mkdir
+
+#usage command - Usage returns the help for an individual command.
+
+hadoop fs -usage <command>
+
+hdfs dfs -usage chmod
+hdfs dfs -usage touchz
+hdfs dfs -usage stat
+****************************************************************	
+01# ls: List all files 
+
+hdfs dfs -ls /
+
+output
+******
+drwxr-xr-x   - sam supergroup          0 2020-12-10 12:09 /home
+drwx-wx-wx   - sam supergroup          0 2020-10-31 08:19 /tmp
+drwxr-xr-x   - sam supergroup          0 2020-11-12 12:17 /user
+****************************************************************
+02# mkdir: Create folder 
+
+hdfs dfs -mkdir /user/sam/HFS
+hdfs dfs -mkdir /user/sam/HFS/input
+hdfs dfs -mkdir /user/sam/HFS/output
+
+hdfs dfs -mkdir -p /user/sam/HFS/input  
+****************************************************************
+03# -put/copyFromLocal: Copies files from Edgenode to Hadoop.
+
+hdfs dfs -put /home/sam/LFS/datasets/book_ratings/books.csv /user/sam/HFS/input/books.csv
+hdfs dfs -copyFromLocal -f /home/sam/LFS/datasets/book_ratings/books.csv /user/sam/HFS/input/books.csv 
+
+echo $?     if this returns 0 , success 
+            if this return  1 , file already exists 
+****************************************************************
+04# -cat: View the data
+hdfs dfs -cat /user/sam/HFS/input/books.csv | head -5
+****************************************************************
+05# -touchz: Create a zero byte file
+hdfs dfs -touchz /user/sam/HFS/input/empty_emp.txt
+
+PS - hdfs wont support update the data in file, but we can append.
+****************************************************************
+06# -appendToFile: Appends the data from your src file to tgt file
+hdfs dfs -appendToFile /home/sam/LFS/datasets/emp_sample.txt /user/sam/HFS/input/empty_emp.txt
+****************************************************************
+07# -get/-copyToLocal: Copies files from Hadoop to Edgenode
+hdfs dfs -get /user/sam/HFS/input/empty_emp.txt /home/sam/LFS/datasets/empty_emp_from_hdfs.txt
+****************************************************************
+08# -rm: Remove file
+hdfs dfs -rm /user/sam/HFS/input/empty_emp.txt
+****************************************************************
+09# -count:  
+   flags->[-h | -v | -q]
+   -h human readable format
+   -v show header line
+   -q show quota
+   -u limit output to show quota and  usage only
+   
+hdfs dfs -count -h -v -q /user/sam/HFS/input/books.csv
+
+QUOTA       REM_QUOTA     SPACE_QUOTA	REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE     PATHNAME
+none        inf           none          inf                0           1                3.1 M             /user/sam/HFS/input/books.csv
+
+hdfs dfs -count -h -v -q /user/sam/HFS
+
+QUOTA       REM_QUOTA     SPACE_QUOTA	REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE 	PATHNAME
+none        inf           none          inf            	   3           2                 6.3 M 			/user/sam/HFS
+****************************************************************	
+10# -du/-df: Disk Usage and Disk Free
+
+du prints a summary of the amount of disk usage of all files/directories in the path.
+df shows the capacity, size, and free space available on the HDFS file system.
+
+-h human readable format
+-v show header line
+
+hdfs dfs -du -h -v /user/sam/HFS/input/books.csv
+SIZE   DISK_SPACE_CONSUMED_WITH_ALL_REPLICAS  FULL_PATH_NAME
+3.1 M  3.1 M                                  /user/sam/HFS/input/books.csv
+
+hdfs dfs -df -h 
+Filesystem               Size    Used  		Available  Use%
+hdfs://localhost:9000    58.3 G  34.1 M     28.2 G     0%
+****************************************************************
+11# -moveFromLocal: Same as -put/copyFromLocal except that source is deleted after its copied.
+hdfs dfs -moveFromLocal /home/sam/LFS/datasets/book_ratings/books.csv /user/sam/HFS/input/books.csv
+
+**moveToLocal is not supported
+****************************************************************
+12# -cp: Copies data within hadoop cluster.
+hdfs dfs -cp /home/sam/LFS/datasets/book_ratings/books.csv /home/sam/LFS/datasets/book_ratings/books_copy01.csv
+****************************************************************
+13# -mv: Copies data within hadoop cluster but it will delete the src file.
+hdfs dfs -mv /home/sam/LFS/datasets/book_ratings/books.csv /home/sam/LFS/datasets/book_ratings/books_copy01.csv
+****************************************************************
+14# -chmod: Changes the permissions of a file/directory
+			*The -R option recursively changes files permissions through the directory structure.
+			*The user must be the owner of the file or superuser
+
+-rw-r--r--   1 sam supergroup         62 2021-06-06 10:38 /user/sam/HFS/input/emp_sample.txt
+##################
+-   ==> file
+d   ==> directory
+##################
+rw- ==> user
+r-- ==> group
+r-- ==> others
+##################
+r ==> read ==> 4
+w ==> write ==> 2
+x ==> execute ==> 1
+###################
+hdfs dfs -chmod 700 /user/sam/HFS/input/emp_sample.txt
+
+-rwx------   1 sam supergroup         79 2021-06-24 17:24 /user/sam/HFS/input/emp_sample.txt
+****************************************************************
+15# -stat: Prints the statistics about the file or directory
+
+[%u | %g | %b | %r | %n | %y | %o]:
+%b –    file size in bytes
+%g –    group name of owner
+%n –    file name
+%o –    block size
+%r –    replication
+%u –    user name of owner
+%y –    modification date
+
+hdfs dfs -stat %u /user/sam/HFS/input/emp_sample.txt
+****************************************************************
+16# -usage: Usage returns the help for an individual command.
+
+hdfs dfs -usage mkdir
+****************************************************************
+17# -test: Command is used for file test operations.
+
+[-d | -e | -f | -s | -r | -w | -z]:
+
+-d	Check whether the path given by the user is a directory or not, return 0 if it is a directory.
+-e	Check whether the path given by the user exists or not, return 0 if the path exists.
+-f	Check whether the path given by the user is a file or not, return 0 if it is a file.
+
+-s	Check if the path is not empty, return 0 if a path is not empty.
+
+-r	return 0 if the path exists and read permission is granted
+-w	return 0 if the path exists and write permission is granted
+-z	Checks whether the file size is 0 byte or not, return 0 if the file is of 0 bytes. 
+
+hdfs dfs -test -d /user/sam/HFS
+use echo $? to check the output of test command 
+
+****************************************************************
+18# -text: It displays zipped file data which cannot be seen by cat command.
+
+
+hdfs dfs -put /home/sam/LFS/datasets/emp.txt.gz /user/sam/HFS/input/emp.txt.gz
+
+hdfs dfs -cat /user/sam/HFS/input/emp.txt.gz
+hdfs dfs -text /user/sam/HFS/input/emp.txt.gz | head -4
+****************************************************************
+19# -find: Find finds all files that match the specified expression
+
+hadoop fs -find <path> … <expression>
+[-name | -iname ]
+
+hdfs dfs -ls /user/sam/HFS/input
+
+-rw-r--r--   1 sam supergroup    3296741 2021-06-24 14:27 /user/sam/HFS/input/books.csv
+-rw-r--r--   1 sam supergroup        228 2021-06-24 18:02 /user/sam/HFS/input/emp.tar.xz
+
+
+hdfs dfs -find /user/sam/HFS/input -name books.csv  -print
+
+/user/sam/HFS/input/books.csv
+****************************************************************
+20) -getfacl: Displays the Access Control Lists (ACLs) of files and directories.                                                      
+              -R      List the ACLs of all files and directories recursively. 
+  
+hdfs dfs -getfacl /user/sam/HFS/input
+
+# file: /user/sam/HFS/input
+# owner: sam
+# group: supergroup
+user::rwx
+group::r-x
+other::r-x
+
+hdfs dfs -getfacl /user/sam/HFS/input/books.csv
+
+
+# file: /user/sam/HFS/input/books.csv
+# owner: sam
+# group: supergroup
+user::rw-
+group::r--
+other::r--
+
+****************************************************************
+21# -checksum: Gives the checksum of source file
+
+hdfs dfs -checksum /user/sam/HFS/input/books.csv
+
+/user/sam/HFS/input/books.csv	MD5-of-0MD5-of-512CRC32C	0000020000000000000000002f23ba79405e7f2d27f5b26f75fa2e86
+****************************************************************
+22# -expunge: Makes the trash empty.
+
+hdfs dfs -expunge
+****************************************************************
+23# tail: Display the last 1KB of file 
+hdfs  dfs -tail /user/sam/HFS/input/books.csv
+****************************************************************
+24# -setrep: To set replication of a file/directory recursively
+hadoop fs -setrep <rep> <path>
+
+hdfs dfs -stat %r /user/sam/HFS/input/emp_sample.txt
+
+hdfs  dfs -setrep 2 /user/sam/HFS/input/emp_sample.txt
+****************************************************************
+25# chown: To set the owner
+    chgrp: To set the group
+	
+	
+    hdfs dfs -stat %u /user/sam/HFS/input/emp_sample.txt
+    hdfs dfs -chown newuser1 /user/sam/HFS/input/emp_sample.txt
+    
+	hdfs dfs -stat %g /user/sam/HFS/input/emp_sample.txt
+    hdfs dfs -chgrp newgrp1 /user/sam/HFS/input/emp_sample.txt	
+****************************************************************
+26# getmerge: Merging files existing in the HDFS file system into a single file in the local file system.
+
+hdfs dfs -put /home/saif/LFS/datasets/userlist1.txt /user/saif/HFS/input/userlist1.txt
+hdfs dfs -put /home/saif/LFS/datasets/userlist2.txt /user/saif/HFS/input/userlist2txt
+hdfs dfs -getmerge /user/saif/HFS/input/userlist1.txt /user/saif/HFS/input/userlist2.txt /home/saif/LFS/merged.txt
+****************************************************************
+27# grep: To filter for a expression
+hdfs dfs -help  | grep count
+****************************************************************
+
+
